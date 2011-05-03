@@ -1,12 +1,12 @@
 import os, settings
-from environment import loader
+from file_system_helper import create_dir_if_needed, generate_file_from_template
 
 class EpubGenerator(object):
     """ Generates epub file structure """
 
     def __init__(self, destination_dir):
         self.destination_path = os.path.join(settings.OUTPUT_DIR, destination_dir)
-        self._create_dir_if_needed(self.destination_path)
+        create_dir_if_needed(self.destination_path)
 
     def generate_epub(self):
         """ Generate EPUB file """
@@ -23,22 +23,17 @@ class EpubGenerator(object):
 
     def _generate_meta_inf_dir(self):
         output_path = os.path.join(self.destination_path, settings.META_INF_DIR)
-        self._create_dir_if_needed(output_path)
+        create_dir_if_needed(output_path)
 
         #generate container file
-        content_ops_path = os.path.join(settings.OPS_DIR, settings.CONTAINER_FILE_NAME)
-        temlplate = loader.load(settings.CONTAINER_XML_TEMPLATE)
-        stream = temlplate.generate(dict(content_ops_path=content_ops_path))
-        #TODO save container.xml
+        generate_file_from_template(path=os.path.join(output_path, settings.CONTAINER_FILE_NAME),
+                                    template_name=settings.CONTAINER_XML_TEMPLATE,
+                                    context=dict(content_ops_path=os.path.join(settings.OPS_DIR,
+                                                                               settings.CONTENT_OPF_FILE_NAME)))
 
     def _generate_ops_dir(self):
         output_path = os.path.join(self.destination_path, settings.OPS_DIR)
-        self._create_dir_if_needed(output_path)
+        create_dir_if_needed(output_path)
 
     def _zip_and_change_extension(self):
         pass
-
-    def _create_dir_if_needed(self, path):
-        if not os.path.exists(path):
-            os.mkdir(path)
-

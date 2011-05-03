@@ -18,3 +18,4 @@ CONTAINER_FILE_NAME = 'container.xml'
 #####################################################################
 ## ODS config
 OPS_DIR = 'OPS'
+CONTENT_OPF_FILE_NAME = 'content.opf'

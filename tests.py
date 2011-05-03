@@ -1,6 +1,6 @@
-import unittest, os
-from epub_gen import EpubGenerator
+import shutil, unittest, os
 import settings
+from epub_gen import EpubGenerator
 from models import Publication
 
 class TestPublication(unittest.TestCase):
@@ -20,6 +20,10 @@ class TestEpubGenerator(unittest.TestCase):
         destination_dir = 'test'
         self.destination_path = os.path.join(settings.OUTPUT_DIR, destination_dir)
 
+        #delete previous dir
+        if os.path.exists(self.destination_path):
+            shutil.rmtree(self.destination_path)
+
         self.epub_generator = EpubGenerator(destination_dir)
         self.epub_generator.generate_epub()
 
@@ -33,6 +37,12 @@ class TestEpubGenerator(unittest.TestCase):
         meta_inf_dir_path = os.path.join(self.destination_path, settings.META_INF_DIR)
         self.assertTrue(os.path.exists(meta_inf_dir_path))
         self.assertTrue(os.path.isdir(meta_inf_dir_path))
+
+        container_file_path = os.path.join(meta_inf_dir_path, settings.CONTAINER_FILE_NAME)
+        self.assertTrue(os.path.exists(container_file_path))
+
+        with open(container_file_path) as file:
+            self.assertTrue(os.path.join(settings.OPS_DIR, settings.CONTENT_OPF_FILE_NAME) in file.read())
 
     def test_generate_ops_dir(self):
         ops_dir_path = os.path.join(self.destination_path, settings.OPS_DIR)
