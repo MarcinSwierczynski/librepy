@@ -4,9 +4,11 @@ from file_system_helper import create_dir_if_needed, generate_file_from_template
 class EpubGenerator(object):
     """ Generates epub file structure """
 
-    def __init__(self, destination_dir):
+    def __init__(self, destination_dir, publication):
         self.destination_path = os.path.join(settings.OUTPUT_DIR, destination_dir)
         create_dir_if_needed(self.destination_path)
+
+        self.publication = publication
 
     def generate_epub(self):
         """ Generate EPUB file """
@@ -34,6 +36,10 @@ class EpubGenerator(object):
     def _generate_ops_dir(self):
         output_path = os.path.join(self.destination_path, settings.OPS_DIR)
         create_dir_if_needed(output_path)
+        
+        #generate content.opf file
+        self.publication.template = settings.CONTENT_OPF_TEMPLATE
+        self.publication.serialize(os.path.join(output_path, settings.CONTENT_OPF_FILE_NAME))
 
     def _zip_and_change_extension(self):
         pass

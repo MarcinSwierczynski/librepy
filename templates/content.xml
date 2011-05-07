@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId" version="2.0"
+         xmlns:py="http://genshi.edgewall.org/">
+
+<metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:opf="http://www.idpf.org/2007/opf">
+    <dc:title>${title}</dc:title>
+    <dc:language xsi:type="dcterms:RFC3066">${language}</dc:language>
+    <dc:identifier id="BookId" opf:scheme="URI">${identifier}</dc:identifier>
+    <py:if test="subject">
+        <dc:subject>${subject}</dc:subject>
+    </py:if>
+    <py:if test="description">
+        <dc:description>${description}</dc:description>
+    </py:if>
+    <py:if test="creator">
+        <dc:creator>${creator}</dc:creator>
+    </py:if>
+    <py:if test="publisher">
+        <dc:publisher>${publisher}</dc:publisher>
+    </py:if>
+    <py:if test="date">
+        <dc:date xsi:type="dcterms:W3CDTF">${date}</dc:date>
+    </py:if>
+</metadata>
+
+<py:if test="items">
+<manifest>
+    <py:for each="item in items">
+    <item id="${item.id}" href="/${item.file}" media-type="${item.type}"/>
+    </py:for>
+</manifest>
+</py:if>
+
+<py:if test="text_items">
+<spine toc="toc">
+    <py:for each="item in text_items">
+    <itemref idref="${item.id}" />
+    </py:for>
+</spine>
+</py:if>
+
+</package>

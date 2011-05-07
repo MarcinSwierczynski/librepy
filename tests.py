@@ -1,22 +1,15 @@
 import shutil, unittest, os
 import settings
 from epub_gen import EpubGenerator
-from models import Publication
-
-class TestPublication(unittest.TestCase):
-    def setUp(self):
-        self.publication = Publication(title='Python Programming', language='en', identifier='MS1104')
-
-    def test_serialization(self):
-        file_name = 'publication.html'
-        self.publication.serialize(file_name)
-
-        file_path = os.path.join(settings.OUTPUT_DIR, file_name)
-        with open(file_path) as file:
-            self.assertTrue(self.publication.title in file.read())
+from models import Publication, Item
 
 class TestEpubGenerator(unittest.TestCase):
     def setUp(self):
+        self.publication = Publication(title='Python Programming', language='en', identifier='MS1104')
+        self.publication.items = [Item(id='001', file='001.html', type='application/xhtml+xml'),
+                                  Item(id='cover', file='cover.png', type='image/png'),
+                                  Item(id='002', file='002.html', type='application/xhtml+xml')]
+
         destination_dir = 'test'
         self.destination_path = os.path.join(settings.OUTPUT_DIR, destination_dir)
 
@@ -24,7 +17,7 @@ class TestEpubGenerator(unittest.TestCase):
         if os.path.exists(self.destination_path):
             shutil.rmtree(self.destination_path)
 
-        self.epub_generator = EpubGenerator(destination_dir)
+        self.epub_generator = EpubGenerator(destination_dir, self.publication)
         self.epub_generator.generate_epub()
 
     def test_generate_mimetype(self):
@@ -48,3 +41,17 @@ class TestEpubGenerator(unittest.TestCase):
         ops_dir_path = os.path.join(self.destination_path, settings.OPS_DIR)
         self.assertTrue(os.path.exists(ops_dir_path))
         self.assertTrue(os.path.isdir(ops_dir_path))
+
+        content_opf_path = os.path.join(ops_dir_path, settings.CONTENT_OPF_FILE_NAME)
+        self.assertTrue(os.path.exists(content_opf_path))
+
+        with open(content_opf_path) as file:
+            content_opf = file.read()
+            self.assertTrue(self.publication.title in content_opf)
+            self.assertTrue(self.publication.language in content_opf)
+            self.assertTrue(self.publication.identifier in content_opf)
+
+            for item in self.publication.items:
+                self.assertTrue(item.id in content_opf)
+                self.assertTrue(item.file in content_opf)
+                self.assertTrue(item.type in content_opf)
