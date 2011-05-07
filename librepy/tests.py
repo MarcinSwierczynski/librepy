@@ -1,7 +1,7 @@
 import shutil, unittest, os
-import settings
-from epub_gen import EpubGenerator
-from models import Publication, Item
+from librepy.epub_gen import EpubGenerator
+from librepy.models import Publication, Item
+from librepy import settings
 
 class TestEpubGenerator(unittest.TestCase):
     def setUp(self):

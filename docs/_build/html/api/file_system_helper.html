@@ -1,0 +1,145 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>file_system_helper &mdash; librepy v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="librepy v0.1 documentation" href="../index.html" />
+    <link rel="up" title="API" href="index.html" />
+    <link rel="next" title="models" href="models.html" />
+    <link rel="prev" title="epub_gen" href="epub_gen.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="models.html" title="models"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="epub_gen.html" title="epub_gen"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">librepy v0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">API</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-librepy.file_system_helper">
+<span id="file-system-helper"></span><h1>file_system_helper<a class="headerlink" href="#module-librepy.file_system_helper" title="Permalink to this headline">¶</a></h1>
+<p>File system helpers.</p>
+<dl class="function">
+<dt id="librepy.file_system_helper.create_dir_if_needed">
+<tt class="descclassname">librepy.file_system_helper.</tt><tt class="descname">create_dir_if_needed</tt><big>(</big><em>path</em><big>)</big><a class="reference internal" href="../_modules/librepy/file_system_helper.html#create_dir_if_needed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librepy.file_system_helper.create_dir_if_needed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates new directory at given location if there is no such directory</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="librepy.file_system_helper.generate_file_from_template">
+<tt class="descclassname">librepy.file_system_helper.</tt><tt class="descname">generate_file_from_template</tt><big>(</big><em>path</em>, <em>template_name</em>, <em>context</em>, <em>render_method='xml'</em><big>)</big><a class="reference internal" href="../_modules/librepy/file_system_helper.html#generate_file_from_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librepy.file_system_helper.generate_file_from_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate file at given path using template and given context</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path</strong> &#8211; path where the file will be generated</li>
+<li><strong>template_name</strong> &#8211; name of template which will be used to generate the file content.
+It must be in templates dir configured in Genshi.</li>
+<li><strong>context</strong> &#8211; dictionary containing values which will be injected into template slots</li>
+<li><strong>render_method</strong> &#8211; document rendering method. See Genshi documentation.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="epub_gen.html"
+                        title="previous chapter">epub_gen</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="models.html"
+                        title="next chapter">models</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/api/file_system_helper.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="models.html" title="models"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="epub_gen.html" title="epub_gen"
+             >previous</a> |</li>
+        <li><a href="../index.html">librepy v0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >API</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Marcin Świerczyński.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

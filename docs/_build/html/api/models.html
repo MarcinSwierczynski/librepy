@@ -1,0 +1,141 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>models &mdash; librepy v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="librepy v0.1 documentation" href="../index.html" />
+    <link rel="up" title="API" href="index.html" />
+    <link rel="prev" title="file_system_helper" href="file_system_helper.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="file_system_helper.html" title="file_system_helper"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">librepy v0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">API</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-librepy.models">
+<span id="models"></span><h1>models<a class="headerlink" href="#module-librepy.models" title="Permalink to this headline">¶</a></h1>
+<p>Classes representing documents or content which will be put in EPUB file</p>
+<dl class="class">
+<dt id="librepy.models.Item">
+<em class="property">class </em><tt class="descclassname">librepy.models.</tt><tt class="descname">Item</tt><big>(</big><em>id</em>, <em>file</em>, <em>type</em>, <em>content=None</em><big>)</big><a class="reference internal" href="../_modules/librepy/models.html#Item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librepy.models.Item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Part of the publication. Can be XHTML (ex. chapter text), image (ex. cover) or CSS style.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="librepy.models.Publication">
+<em class="property">class </em><tt class="descclassname">librepy.models.</tt><tt class="descname">Publication</tt><big>(</big><em>title</em>, <em>language</em>, <em>identifier</em>, <em>subject=None</em>, <em>description=None</em>, <em>creator=None</em>, <em>publisher=None</em>, <em>date=None</em>, <em>items=None</em><big>)</big><a class="reference internal" href="../_modules/librepy/models.html#Publication"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librepy.models.Publication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Publication that can be converted to appropriate format, ie. EPUB</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="librepy.models.SerializablePublication">
+<em class="property">class </em><tt class="descclassname">librepy.models.</tt><tt class="descname">SerializablePublication</tt><big>(</big><em>template</em><big>)</big><a class="reference internal" href="../_modules/librepy/models.html#SerializablePublication"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librepy.models.SerializablePublication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encapsulates serialization methods</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Variables:</th><td class="field-body"><strong>template</strong> &#8211; Template which will be used to serialize object content into file</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="librepy.models.SerializablePublication.serialize">
+<tt class="descname">serialize</tt><big>(</big><em>file_path</em><big>)</big><a class="reference internal" href="../_modules/librepy/models.html#SerializablePublication.serialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#librepy.models.SerializablePublication.serialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serializes publication to file at given path.
+Uses <tt class="xref py py-attr docutils literal"><span class="pre">template</span></tt> to generate content of the file.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="file_system_helper.html"
+                        title="previous chapter">file_system_helper</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/api/models.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="file_system_helper.html" title="file_system_helper"
+             >previous</a> |</li>
+        <li><a href="../index.html">librepy v0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >API</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Marcin Świerczyński.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
