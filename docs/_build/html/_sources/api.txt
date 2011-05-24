@@ -1,2 +1,0 @@
-.. automodule:: librepy.epub_gen
-   :members:
