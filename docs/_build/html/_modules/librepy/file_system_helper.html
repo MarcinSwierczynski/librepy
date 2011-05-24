@@ -45,6 +45,12 @@
           <div class="body">
             
   <h1>Source code for librepy.file_system_helper</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">File system helpers.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Marcin Swierczynski &lt;marcin@swierczynski.net&gt;&#39;</span>
+
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">environment</span> <span class="kn">import</span> <span class="n">loader</span>
 
@@ -54,7 +60,16 @@
         <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="generate_file_from_template"><a class="viewcode-back" href="../../api/file_system_helper.html#librepy.file_system_helper.generate_file_from_template">[docs]</a><span class="k">def</span> <span class="nf">generate_file_from_template</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">template_name</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">render_method</span><span class="o">=</span><span class="s">&#39;xml&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Generate file at given path using template and given context &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate file at given path using template and given context</span>
+
+<span class="sd">    :param path: path where the file will be generated</span>
+<span class="sd">    :param template_name: name of template which will be used to generate the file content.</span>
+<span class="sd">                          It must be in templates dir configured in Genshi.</span>
+<span class="sd">    :param context: dictionary containing values which will be injected into template slots</span>
+<span class="sd">    :param render_method: document rendering method. See Genshi documentation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">template</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">template_name</span><span class="p">)</span>
     <span class="n">file_content</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">render_method</span><span class="p">)</span>
 

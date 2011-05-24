@@ -45,20 +45,31 @@
           <div class="body">
             
   <h1>Source code for librepy.epub_gen</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Classes designed to generate EPUB files</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Marcin Swierczynski &lt;marcin@swierczynski.net&gt;&#39;</span>
+
 <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">settings</span>
 <span class="kn">from</span> <span class="nn">file_system_helper</span> <span class="kn">import</span> <span class="n">create_dir_if_needed</span><span class="p">,</span> <span class="n">generate_file_from_template</span>
 
 <div class="viewcode-block" id="EpubGenerator"><a class="viewcode-back" href="../../api/epub_gen.html#librepy.epub_gen.EpubGenerator">[docs]</a><span class="k">class</span> <span class="nc">EpubGenerator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Generates epub file structure and produce final archive &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    EPUB file generator.</span>
 
+<span class="sd">    :ivar destination_dir: directory to generate EPUB file into</span>
+<span class="sd">    :ivar publication: :class:`~librepy.models.Publication` object which EPUB file will be based on</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination_dir</span><span class="p">,</span> <span class="n">publication</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">destination_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">OUTPUT_DIR</span><span class="p">,</span> <span class="n">destination_dir</span><span class="p">)</span>
-        <span class="n">create_dir_if_needed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destination_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">OUTPUT_DIR</span><span class="p">,</span> <span class="n">destination_dir</span><span class="p">)</span>
+        <span class="n">create_dir_if_needed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_dir</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">publication</span> <span class="o">=</span> <span class="n">publication</span>
 
 <div class="viewcode-block" id="EpubGenerator.generate_epub"><a class="viewcode-back" href="../../api/epub_gen.html#librepy.epub_gen.EpubGenerator.generate_epub">[docs]</a>    <span class="k">def</span> <span class="nf">generate_epub</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Generate EPUB file &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot; Generates epub file structure and produce final archive &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_mime_type</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_meta_inf_dir</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_ops_dir</span><span class="p">()</span>
@@ -66,12 +77,12 @@
 </div>
     <span class="k">def</span> <span class="nf">_generate_mime_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Generate mimetype file &quot;&quot;&quot;</span>
-        <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_path</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">MIMETYPE_FILE_NAME</span><span class="p">)</span>
+        <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_dir</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">MIMETYPE_FILE_NAME</span><span class="p">)</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
             <span class="nb">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MIMETYPE_FILE_CONTENT</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_generate_meta_inf_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_path</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">META_INF_DIR</span><span class="p">)</span>
+        <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_dir</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">META_INF_DIR</span><span class="p">)</span>
         <span class="n">create_dir_if_needed</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
 
         <span class="c">#generate container file</span>
@@ -81,7 +92,7 @@
                                                                                <span class="n">settings</span><span class="o">.</span><span class="n">CONTENT_OPF_FILE_NAME</span><span class="p">)))</span>
 
     <span class="k">def</span> <span class="nf">_generate_ops_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_path</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">OPS_DIR</span><span class="p">)</span>
+        <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_dir</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">OPS_DIR</span><span class="p">)</span>
         <span class="n">create_dir_if_needed</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
         
         <span class="c">#generate content.opf file</span>
